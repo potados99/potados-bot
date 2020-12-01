@@ -2,7 +2,7 @@
   "name": "cafeteria-bot",
   "version": "1.0.0",
   "private": true,
-  "description": "Cafeteria PR/release bot",
+  "description": "Cafeteria issue/release bot",
   "author": "potados99 <potados99@gmail.com>",
   "license": "ISC",
   "repository": "https://github.com/potados99/cafeteria-bot.git",
@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "start": "probot run ./lib/index.js",
+    "start": "tsc && probot run ./lib/index.js",
     "test": "jest"
   },
   "dependencies": {

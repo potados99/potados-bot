@@ -1,13 +1,27 @@
-import { Application } from 'probot' // eslint-disable-line no-unused-vars
+import { Application } from 'probot'
 
 export = (app: Application) => {
+  app.log.info('App started!');
+
   app.on('issues.opened', async (context) => {
     const issueComment = context.issue({ body: 'Thanks for opening this issue!' })
-    await context.github.issues.createComment(issueComment)
+    await context.octokit.issues.createComment(issueComment)
   })
-  // For more information on building apps:
-  // https://probot.github.io/docs/
 
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
+  app.on('issue_comment.created', async (context) => {
+     context.log.info(`issue commented!: ${context.payload.comment.body}`)
+  })
+
+  app.on('pull_request.opened', async (context) => {
+    context.log.info(`pr opened!: ${context.payload}`)
+  });
+
+  app.on('pull_request.reopened', async (context) => {
+    context.log.info(`pr reopened!: ${context.payload}`)
+  });
+
+  app.on('pull_request.closed', async (context) => {
+    context.log.info(`pr reopened!: ${context.payload}`)
+  });
+
 }

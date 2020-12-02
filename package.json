@@ -18,7 +18,8 @@
     "dev": "tsc && probot run ./dist/index.js",
     "test": "jest",
 
-    "postinstall": "tsc",
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
     "start": "tsc && node ./dist/index.js"
 
   },

@@ -4,12 +4,13 @@ export = (app: Application) => {
   app.log.info('App started!');
 
   app.on('issues.opened', async (context) => {
-    const issueComment = context.issue({ body: 'Thanks for opening this issue!' })
-    await context.octokit.issues.createComment(issueComment)
-  })
 
-  app.on('issue_comment.created', async (context) => {
-     context.log.info(`issue commented!: ${context.payload.comment.body}`)
+    if (context.payload.issue.user.login === 'potados99') {
+      return;
+    }
+
+    const issueComment = context.issue({ body: '이슈 남겨주셔서 감사합니다!' });
+    await context.octokit.issues.createComment(issueComment)
   })
 
   app.on('create', async (context) => {

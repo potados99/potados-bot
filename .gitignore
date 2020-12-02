@@ -4,5 +4,5 @@ npm-debug.log
 !mock-cert.pem
 .env
 coverage
-lib
+dist
 private-key.pem

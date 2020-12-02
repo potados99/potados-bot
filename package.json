@@ -15,11 +15,11 @@
   ],
   "scripts": {
 
-    "dev": "tsc && probot run ./lib/index.js",
+    "dev": "tsc && probot run ?lib/index.js",
     "test": "jest",
 
     "postinstall": "tsc",
-    "start": "tsc && probot run ./lib/index.js"
+    "start": "probot run lib/index.js"
 
   },
   "dependencies": {

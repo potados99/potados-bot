@@ -19,7 +19,7 @@
     "test": "jest",
 
     "postinstall": "tsc",
-    "start": "probot run ./lib/index.js"
+    "start": "tsc && probot run ./lib/index.js"
 
   },
   "dependencies": {

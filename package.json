@@ -14,8 +14,13 @@
     "probot-app"
   ],
   "scripts": {
-    "start": "tsc && probot run ./lib/index.js",
-    "test": "jest"
+
+    "dev": "tsc && probot run ./lib/index.js",
+    "test": "jest",
+
+    "postinstall": "tsc",
+    "start": "probot run ./lib/index.js"
+
   },
   "dependencies": {
     "@types/jest": "^26.0.9",

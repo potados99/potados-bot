@@ -18,13 +18,13 @@
     "dev": "tsc && probot run ./lib/index.js",
     "test": "jest",
 
-    "start": "tsc && probot run ./lib/index.js"
+    "postinstall": "tsc",
+    "start": "probot run ./lib/index.js"
 
   },
   "dependencies": {
-    "probot": "^10.9.5"
-  },
-  "devDependencies": {
+    "probot": "^10.9.5",
+    "tsc": "^1.20150623.0",
     "@types/jest": "^26.0.9",
     "@types/node": "^14.0.27",
     "@typescript-eslint/eslint-plugin": "^4.6.0",

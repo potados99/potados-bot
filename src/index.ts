@@ -14,8 +14,6 @@ export = (app: Application) => {
 
   app.on('create', async (context) => {
     if (context.payload.ref_type === 'tag') {
-      context.log.info(`New tag: ${context.payload.ref}`)
-
       const drafter = new ReleaseDrafter(context);
       await drafter.draftRelease();
     }
@@ -31,13 +29,18 @@ class ReleaseDrafter {
   }
 
   async draftRelease() {
+    this.log(`New tag: ${this.context.payload.ref}`);
+
     const latestReleaseCommitSha = await this.getLatestReleaseSha();
+    this.log(`Latest release(tag)'s commit SHA: '${latestReleaseCommitSha}'`);
 
     const newCommits = await this.getCommitsSinceLastRelease(latestReleaseCommitSha);
+    this.log(`New commits from then: '${newCommits.map((c: any) => c.sha.substring(0, 7)).join(', ')}'`);
 
     const commitDescriptions = this.createCommitDescriptions(newCommits);
 
     const releaseBody = this.generateReleaseBody(commitDescriptions);
+    this.log(`Release content: '${releaseBody}`);
 
     await this.pushRelease(releaseBody);
   }
@@ -111,5 +114,9 @@ class ReleaseDrafter {
       name: newTagName,
       body: body,
     });
+  }
+
+  private log(any: any) {
+    this.context.log.info(any);
   }
 }

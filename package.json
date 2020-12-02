@@ -20,7 +20,7 @@
 
     "tsc": "tsc",
     "postinstall": "npm run tsc",
-    "start": "tsc && node ./dist/index.js"
+    "start": "probot run ./dist/index.js"
 
   },
   "dependencies": {

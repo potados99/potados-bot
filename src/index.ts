@@ -97,7 +97,7 @@ class ReleaseDrafter {
   private createCommitDescriptions(commits: [any]) {
     return (commits.length > 0) ?
         commits.reverse().map((c) => `[\`${c.sha.substring(0, 7)}\`](${c.html_url}) ${c.commit.message}`).join('    \n') :
-        'Initial release!';
+        '처음 릴리즈!';
   }
 
   private generateReleaseBody(commitDescriptions: string) {

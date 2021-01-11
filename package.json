@@ -5,9 +5,9 @@
   "description": "Github 이슈/릴리즈 봇",
   "author": "potados99 <potados99@gmail.com>",
   "license": "ISC",
-  "repository": "https://github.com/potados99/cafeteria-bot.git",
-  "homepage": "https://github.com/potados99/cafeteria-bot",
-  "bugs": "https://github.com/potados99/cafeteria-bot/issues",
+  "repository": "https://github.com/potados99/potados-bot.git",
+  "homepage": "https://github.com/potados99/potados-bot",
+  "bugs": "https://github.com/potados99/potados-bot/issues",
   "keywords": [
     "probot",
     "github",

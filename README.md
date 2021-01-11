@@ -1,6 +1,6 @@
 # potados-bot
 
-이슈/릴리즈 봇
+GitHub 이슈/릴리즈 봇
 
 ## 하는 일
 

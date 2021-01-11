@@ -1,8 +1,8 @@
 {
-  "name": "cafeteria-bot",
+  "name": "potados-bot",
   "version": "1.0.0",
   "private": true,
-  "description": "Cafeteria issue/release bot",
+  "description": "Github 이슈/릴리즈 봇",
   "author": "potados99 <potados99@gmail.com>",
   "license": "ISC",
   "repository": "https://github.com/potados99/cafeteria-bot.git",

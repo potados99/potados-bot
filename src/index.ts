@@ -1,6 +1,10 @@
 import { Application } from 'probot'
 
-export = (app: Application) => {
+type Params = {
+  app: Application
+};
+
+export = ({app}: Params) => {
   app.log.info('App started!');
 
   app.on('issues.opened', async (context) => {

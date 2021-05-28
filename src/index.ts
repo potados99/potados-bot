@@ -32,7 +32,7 @@ class ReleaseDrafter {
   async draftRelease() {
     this.log(`New tag: ${this.context.payload.ref}`);
 
-    const latestReleaseCommitSha = await this.getLatestReleaseSha();
+    const latestReleaseCommitSha = await this.getLatestReleaseCommitSha();
     this.log(`Latest release(tag)'s commit SHA: '${latestReleaseCommitSha}'`);
 
     const newCommits = await this.getCommitsSinceLastRelease(latestReleaseCommitSha);
@@ -53,7 +53,7 @@ class ReleaseDrafter {
     return {repoName, ownerName};
   }
 
-  private async getLatestReleaseSha() {
+  private async getLatestReleaseCommitSha() {
     const {repoName, ownerName} = this.getRepoAndOwner();
 
     let latestRelease;
@@ -68,11 +68,34 @@ class ReleaseDrafter {
 
     const latestTagName = latestRelease.data.tag_name;
 
-    const latestTag = await this.context.octokit.git.getRef({
+    const latestTagRef = await this.context.octokit.git.getRef({
       owner: ownerName,
       repo: repoName,
       ref: `tags/${latestTagName}`
     });
+
+    const latestTagRefObject = latestTagRef.data.object;
+
+    // 태그 ref가 담는 대상이 커밋이 아니라 태그일 수도 있읍니다...
+    // 그거슨 object의 type이 'tag'인 것으로 나타납니다...
+
+    if (latestTagRefObject.type === 'commit') {
+      // 커밋이면 바로 sha를 반환해 줍니다.
+      return latestTagRefObject.sha;
+    }
+
+    if (latestTagRefObject.type !== 'tag') {
+      // 커밋도 아니고 태그도 아니다..!?
+      // 밴!!
+      console.warn('What is this?? Not a commit, nor tag?');
+      return null;
+    }
+
+    const latestTag = await this.context.octokit.git.getTag({
+      owner: ownerName,
+      repo: repoName,
+      tag_sha: latestTagRefObject.sha
+    })
 
     return latestTag.data.object.sha;
   }

@@ -16,7 +16,6 @@
   "scripts": {
     "test": "jest",
     "start": "tsc && probot run ./dist/index.js",
-
     "deploy": "git push heroku main"
   },
   "dependencies": {
